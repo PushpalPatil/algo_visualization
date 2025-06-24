@@ -1,9 +1,11 @@
+import {sort} from './selectionSortVisualizer'
+
 
 export default function Home() {
 
   return (
      <div>
-      <h1>Hi there</h1>
+      <SelectionSortVisualizer/>
     </div>
   );
 };
