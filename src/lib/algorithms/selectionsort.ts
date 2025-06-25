@@ -1,4 +1,3 @@
-import { on } from "node:stream"
 
 export function selectionsort(arr: number[]) : number[] | undefined {
 
@@ -26,7 +25,6 @@ for (let i = 0; i < arr.length; i++) {
 return arr
 
 }
-
 
 export interface SelectionSortState{
     // what data do I need
@@ -71,7 +69,7 @@ export function selectionSortWithStates(input: number[], onStateChange : (s : Se
             if(arr[j] < arr[minIndex]) minIndex = j;
         }
 
-        //if the minimum element's index is not the current index, then swap
+        // if the minimum element's index is not the current index, then swap
         if(minIndex !== i){
             const temp = arr[i];
             arr[i] = arr[minIndex];
@@ -91,7 +89,7 @@ export function selectionSortWithStates(input: number[], onStateChange : (s : Se
 
     }
 
-    // now i have to load the whole state as a final state form before returning the array
+    // now I have to load the whole state as a final state form before returning the array
     // i, j, and minIndex = arrLen because need to tell the visualizer that no value is currently being selected
     // swapped is now false because we are done swapping / indicates that no swappung to be done.
     onStateChange({
