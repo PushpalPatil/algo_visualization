@@ -1,4 +1,4 @@
-import {sort} from './selectionSortVisualizer'
+import {sort} from '../components/visualizers/selectionSortVisualizer'
 
 
 export default function Home() {
