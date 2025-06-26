@@ -1,4 +1,7 @@
+"use client"
+
 import { SelectionSortVisualizer } from "../visualizers/selectionSortVisualizer";
+
 
 export function AnimatedSort() {
   const [frames, setFrames] = useState<YourAlgorithmState[]>([]);
