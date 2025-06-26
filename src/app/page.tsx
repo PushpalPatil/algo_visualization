@@ -11,8 +11,10 @@ export default function Home() {
   const [index, setIndex] = useState(0)
 
   function onButtonClick() {
-    setIndex(prev => prev + 1)
-
+    setIndex(prev => {
+      if (prev + 1 < frames.length) return prev + 1;
+      return prev
+    });
   }
 
   useEffect(() => {
@@ -21,22 +23,37 @@ export default function Home() {
     setFrames(x)
   }, []);
 
-
   if (frames.length <= 0) return null;
 
   return (
-    <div>
-      <SelectionSortVisualizer state={frames[index]} />
-      <button onClick={onButtonClick}>Next</button>
+
+    <div className="">
+      <div className="flex flex-direction:column justify-center text-center">
+
+        <div className="flex-col">
+
+          <SelectionSortVisualizer state={frames[index]} />
+
+          <section className="flex-row ">
+            <button
+              onClick={onButtonClick}
+              className=" justify-center border-1 p-2.5 pl-3 pr-3"
+            >
+              Next
+            </button>
+          </section>
+        </div>
+      </div>
     </div>
+
   );
 };
 
 
-  // frames.forEach(f => {
+// frames.forEach(f => {
 
-  //   const x : SelectionSortState[] = []
-  //   selectionSortWithStates(sample, state => x.push(state));
-  //   setFrames(x);
+//   const x : SelectionSortState[] = []
+//   selectionSortWithStates(sample, state => x.push(state));
+//   setFrames(x);
 
-  // });
+// });
