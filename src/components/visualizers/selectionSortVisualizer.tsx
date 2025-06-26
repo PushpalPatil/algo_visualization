@@ -39,15 +39,21 @@ export function SelectionSortVisualizer({ state }: { state: SelectionSortState }
                             custom={swapDirection}
                             variants = {{
                                 swap: (direction:number) => ({
-                                    y : [direction * 40, 0],
+                                    // how do I calculate the arc to make the boxes switch positions smoothly
+                                    // I need to calculate the arc
+                                    // boxes have a fixed width and margin (e.g., 56px wide + 32px margin for gap-8),
+                                    //          calculate the distance as (otherIndex - index) * (boxWidth + margin).
+                                    x : [0 , direction * -85, 0],
+                                    y : [0],
                                     zIndex: 1
                                 }),
                                 default: {
+                                    x: 0,
                                     y: 0,
                                     zIndex: 0
                                 }
                             }}
-                            transition={{type:"tween", duration: 1 }}
+                            transition={{ duration: 1, times: [0, 0.7, 1] }}
                             animate = {isSwapping ? "swap" : "default"}
                             className="flex flex-col items-center"
                         >
