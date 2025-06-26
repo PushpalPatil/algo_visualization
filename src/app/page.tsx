@@ -28,12 +28,12 @@ export default function Home() {
   return (
 
     <div className="">
-      <div className="flex flex-direction:column justify-center text-center">
+      <div className="justify-center flex text-4xl font-medium font-mono from-neutral-300 w-full mt-15"> selection sort </div>
+      <div className="flex flex-direction:column justify-center text-center mt-5">
 
         <div className="flex-col">
-
+          
           <SelectionSortVisualizer state={frames[index]} />
-
           <section className="flex-row ">
             <button
               onClick={onButtonClick}
