@@ -4,10 +4,11 @@ import { SelectionSortState, selectionSortWithStates } from "@/lib/algorithms/se
 import { useEffect, useState } from "react";
 
 
+const sample = [1, 4, 8, 5, 3, 7, 2];
 
 export default function SelectionSort() {
 
-    const sample = [1, 4, 8, 5, 3, 7, 2]
+
 
     const [frames, setFrames] = useState<SelectionSortState[]>([]);
     const [index, setIndex] = useState(0)
