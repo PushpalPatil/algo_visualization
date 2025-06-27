@@ -1,48 +1,27 @@
-"use client";
-import { SelectionSortVisualizer } from "@/components/visualizers/selectionSortVisualizer";
-import { SelectionSortState, selectionSortWithStates } from "@/lib/algorithms/selectionsort";
-import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
 
-  const sample = [1, 4, 2, 5, 3, 7, 8]
-
-  const [frames, setFrames] = useState<SelectionSortState[]>([]);
-  const [index, setIndex] = useState(0)
-
-  function onButtonClick() {
-    setIndex(prev => {
-      if (prev + 1 < frames.length) return prev + 1;
-      return prev
-    });
-  }
-
-  useEffect(() => {
-    const x: SelectionSortState[] = [];
-    selectionSortWithStates(sample, state => x.push(state));
-    setFrames(x)
-  }, []);
-
-  if (frames.length <= 0) return null;
 
   return (
 
     <div className="">
-      <div className="justify-center flex text-4xl font-medium font-mono from-neutral-300 w-full mt-15"> selection sort </div>
-      <div className="flex flex-direction:column justify-center text-center mt-5">
 
-        <div className="flex-col">
-          
-          <SelectionSortVisualizer state={frames[index]} />
-          <section className="flex-row ">
-            <button
-              onClick={onButtonClick}
-              className=" justify-center border-1 p-2.5 pl-3 pr-3"
-            >
-              Next
+      <div className="justify-center flex text-4xl font-medium font-mono from-neutral-300 w-full mt-15"> pick a sort! </div>
+      <div className="flex flex-row justify-center text-center mt-5">
+          <div className="flex flex-row">
+          <Link href="/selectionSort">
+            <button className=" justify-center border-1 p-2.5 pl-3 pr-3">
+               Selection Sort 
             </button>
-          </section>
-        </div>
+            </Link>
+         
+          <Link href="/selectionSort">
+            <button className=" justify-center border-1 p-2.5 pl-3 pr-3">
+               Bucket Sort 
+            </button>
+            </Link>
+            </div>
       </div>
     </div>
 

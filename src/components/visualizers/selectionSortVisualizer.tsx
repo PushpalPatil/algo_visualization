@@ -33,9 +33,9 @@ export function SelectionSortVisualizer({ state }: { state: SelectionSortState }
                     return(
 
                         <motion.div
-                            key = {index}
+                            key = {num}
                             layout
-                            layoutId= {`box-${num}-${index}`}
+                            layoutId= {`box-${num}`}
                             custom={swapDirection}
                             variants = {{
                                 swap: (direction:number) => ({
