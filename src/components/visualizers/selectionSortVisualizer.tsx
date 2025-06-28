@@ -1,5 +1,6 @@
 import { SelectionSortState } from "@/lib/algorithms/selectionsort";
 import { motion } from "framer-motion";
+import '@/app/globals.css';
 // does this automatically assign all relative state values to the respective values?
 // not sure, but the error went away
 
@@ -13,7 +14,6 @@ import { motion } from "framer-motion";
 //     {/* Show visual indicators */ }
 //     {/* Display current operation */ }
 
-
 export function SelectionSortVisualizer({ state }: { state: SelectionSortState }) {
 
     const { array, i, j, minIndex, swapped} = state
@@ -21,8 +21,9 @@ export function SelectionSortVisualizer({ state }: { state: SelectionSortState }
     const styledBoxes = (array: number[]) => {
         return (
             <div className="flex flex-col items-center gap-20 ">
-                <div className="flex flex-row gap-8 p-4">
-                {array.map((num, index) => 
+                <div className="flex flex-row gap-8 pl-4 pr-4">
+                {
+                array.map((num, index) => 
                 {
                     const isSwapping = swapped && (index === i || index === minIndex);
                     let swapDirection = 0;
@@ -33,9 +34,9 @@ export function SelectionSortVisualizer({ state }: { state: SelectionSortState }
                     return(
 
                         <motion.div
-                            key = {num}
+                            key = {`sel-${num}`}
                             layout
-                            layoutId= {`box-${num}`}
+                            layoutId= {`box-sel-${num}`}
                             custom={swapDirection}
                             variants = {{
                                 swap: (direction:number) => ({
@@ -53,17 +54,20 @@ export function SelectionSortVisualizer({ state }: { state: SelectionSortState }
                                     zIndex: 0
                                 }
                             }}
+                            //It maps each keyframe to a relative “time” within the overall animation duration.
+                            // The array values must range from 0 (animation start) to 1 (animation end).
+                            //x: [start, middle, end] y: [up, up, down]
+                            // start - middle - end : middle = 0.7 = animation will be at that keyframe when 70% of the total duration has passed.
                             transition={{ duration: 1, times: [0, 0.7, 1] }}
                             animate = {isSwapping ? "swap" : "default"}
                             className="flex flex-col items-center"
                         >
                             
-                            <div key={`${num}-${index}-1`} className="box-border border-1 pl-5 pr-5 border-gray-300 p-4 bg-gray-800 ">
+                            <div key={`sel-${num}-${index}-1`} className="box-border border-1 pl-5 pr-5 border-gray-300 p-4 bg-gray-800 ">
                                 <p className="text-gray-300">{array[index]}</p>
                             </div>
 
-                            <div key = {`${num}-${index}-2`} className="justify-center flex">
-
+                            <div key = {`sel-${num}-${index}-2`} className="justify-center flex">
                                 { j===i && i=== index ? (
                                     <div className=" flex flex-row w-full space-x-0.5 ">
                                         <div className=" justify-items-start w-6 h-2 rounded-full bg-blue-300 mt-2"/>
@@ -76,11 +80,9 @@ export function SelectionSortVisualizer({ state }: { state: SelectionSortState }
                                 ) :(
                                     <div className="w-6 h-2 mt-2 bg-transparent opacity-0"/>
                                 ) }
-
                             </div>
 
-                            <div key = {`${num}-${index}-3`} className="justify-center flex">
-
+                            <div key = {`sel-${num}-${index}-3`} className="justify-center flex">
                                 {
                                     minIndex === index ? (
                                         <div className="w-6 h-2 rounded-full bg-red-300 mt-2"/>
@@ -91,14 +93,11 @@ export function SelectionSortVisualizer({ state }: { state: SelectionSortState }
                             </div>
                         </motion.div>
                     )
-                    
                 })
-                
-                    
                 }
                 </div>
 
-                <div className="flex flex-row p-2 mb-15">
+                <div className="flex flex-row p-2 mb-10">
                     <div className="border-1 p-4 border-gray-700">
                         <div className="flex flex-row place-content-evenly">
                             <div className=" justify-items-start" >i : {i} </div>
@@ -117,18 +116,13 @@ export function SelectionSortVisualizer({ state }: { state: SelectionSortState }
                         </div>
                     </div>
                 </div>
-            
             </div>
         );
-
     }
 
     return (
-
-        <div className="justify-content: space-between flex-direction:column m-20">
-
+        <div className="justify-content: space-between flex-direction:column m-20 style={{ fontFamily: 'consolas', fontSize: 'medium', fontWeight:'light'}}">
             {styledBoxes(array)}
-
         </div>
     )
 }
