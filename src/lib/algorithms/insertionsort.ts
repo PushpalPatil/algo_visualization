@@ -30,7 +30,7 @@ export function insertionsort(arr: number[]): number[] | undefined {
 
 
 export type VisualSortItem = { value: number; id: number };
-export type MaybeVisualSortItem = VisualSortItem | null;
+export type MaybeVisualSortItem = VisualSortItem;
 
 export interface InsertionSortState {
     // what data do I need
@@ -53,7 +53,7 @@ export function insertionSortWithStates(input: number[], onStateChange: (s: Inse
 
     const arrLen = input.length
 
-    
+
 
     onStateChange({
         array: [...arr],
@@ -69,7 +69,6 @@ export function insertionSortWithStates(input: number[], onStateChange: (s: Inse
     for (let i = 1; i < arrLen; i++) {
         const current = arr[i];
         let j = i - 1;
-        arr[i] = null;
         console.log("2", arr)
 
         onStateChange({
@@ -82,9 +81,10 @@ export function insertionSortWithStates(input: number[], onStateChange: (s: Inse
 
         console.log("3", arr)
 
-        while (j >= 0 && arr[j] && current && arr[j]!.value > current.value) {
+        while (j >= 0 && arr[j]!.value > current.value) {
 
             arr[j + 1] = arr[j];
+            arr[j] = current;
 
             onStateChange({
                 array: [...arr],
@@ -98,7 +98,7 @@ export function insertionSortWithStates(input: number[], onStateChange: (s: Inse
 
         }
 
-        arr[j + 1] = current;
+        //arr[j + 1] = current;
         console.log("5", arr)
 
         onStateChange({

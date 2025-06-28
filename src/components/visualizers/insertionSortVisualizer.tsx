@@ -6,10 +6,11 @@ import { motion } from "framer-motion";
 export function InsertionSortVisualizer({ state }: { state: InsertionSortState }) {
 
     const { array, i, j, insertedIndx, swapped } = state
+    console.log("rendering state: ", state)
 
     const styledBoxes = (array: MaybeVisualSortItem[] | null) => {
-        
-        if(!array) return null
+
+        if (!array) return null
 
         return (
             <div className="flex flex-col items-center gap-20 ">
@@ -17,7 +18,7 @@ export function InsertionSortVisualizer({ state }: { state: InsertionSortState }
                     {
                         array.map((item, index) => {
                             console.log(item)
-                            
+
                             if (!item) {
                                 return null
                             }
