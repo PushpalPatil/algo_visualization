@@ -1,6 +1,5 @@
 
 export function selectionsort(arr: number[]) : number[] | undefined {
-
 console.log(arr)
 
 if (arr.length === 0) return undefined
@@ -25,6 +24,9 @@ for (let i = 0; i < arr.length; i++) {
 return arr
 
 }
+
+
+
 
 export interface SelectionSortState{
     // what data do I need
@@ -91,7 +93,7 @@ export function selectionSortWithStates(input: number[], onStateChange : (s : Se
 
     // now I have to load the whole state as a final state form before returning the array
     // i, j, and minIndex = arrLen because need to tell the visualizer that no value is currently being selected
-    // swapped is now false because we are done swapping / indicates that no swappung to be done.
+    // swapped is now false because we are done swapping / indicates that no swapping to be done.
     onStateChange({
         array: [...arr],
         i: arrLen,
